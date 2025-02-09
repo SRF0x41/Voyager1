@@ -1,0 +1,46 @@
+/*Structs*/
+struct CCS_command
+{
+    char command[16] = "camera picture"; // Command string
+};
+
+/*Public vars*/
+int ccs_read_count = 0;
+CCS_command ccs_command_instance; // Instance of CCS_command
+
+/*Prototypes*/
+
+
+
+/*
+    // CCS portion
+
+    delay(1000);
+    //Serial.println("ESP32 running...");
+
+    // Read in commands from serial
+    if (Serial.available() > 0)
+    { // Check if data is available
+        char input = Serial.read();
+        Serial.println(input);
+
+        // Check if input matches the expected character in the command
+        if (input == ccs_command_instance.command[ccs_read_count])
+        {
+            // Increment the read count
+            ccs_read_count++;
+
+            // Check if we've reached the end of the command string
+            if (ccs_read_count == strlen(ccs_command_instance.command))
+            {
+                Serial.println("Command received: camera picture");
+                ccs_read_count = 0;  // Reset after command is fully received
+            }
+        }
+        else
+        {
+            ccs_read_count = 0;
+            Serial.println("ERR: invalid command");
+        }
+    }
+    */
