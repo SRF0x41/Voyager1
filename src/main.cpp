@@ -143,7 +143,7 @@ void loop()
         // Copy the image data to the CCSDS packet payload
         memcpy(ccsds_packet->data, fb->buf, fb->len);
 
-        // Send data
+        // Send datagit
         sendData(ccsds_packet);
 
         // Frees
