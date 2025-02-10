@@ -120,7 +120,7 @@ void createPrimaryHeader_image(CCSDS_Packet *packet, size_t data_len)
 
 void sendData(CCSDS_Packet *packet)
 {
-    Serial.write(packet->data,packet->primaryHeader.packet_length);
+    Serial.write(packet->data, packet->primaryHeader.packet_length);
 }
 
 void loop()
@@ -138,7 +138,7 @@ void loop()
         CCSDS_Packet *ccsds_packet = (CCSDS_Packet *)malloc(sizeof(CCSDS_Packet) + fb->len);
 
         // Create the primary header for the packet
-        createPrimaryHeader_image(ccsds_packet,fb->len);
+        createPrimaryHeader_image(ccsds_packet, fb->len);
 
         // Copy the image data to the CCSDS packet payload
         memcpy(ccsds_packet->data, fb->buf, fb->len);
