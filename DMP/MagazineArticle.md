@@ -4,86 +4,103 @@
 
 ## Introduction
 
-*The Voyager 1 mission represents one of humanity’s greatest engineering achievements. Originally designed for a 5-year mission, Voyager 1 has defied expectations, operating continuously for over 47 years. As of February 2025, it is 15.6 billion miles away, transmitting data from interstellar space. Its onboard computer systems have been running for 16,950 days, demonstrating an unparalleled level of reliability in deep space exploration.*
+*The Voyager 1 mission represents one of humanity’s greatest engineering achievements. Originally designed for a five-year mission, Voyager 1 has defied expectations, operating continuously for over 47 years. As of February 2025, it is 15.6 billion miles away, transmitting data from interstellar space. Its onboard computer systems have been running for 16,950 days, demonstrating an unparalleled level of reliability in deep space exploration.*
 
 ---
 
 ## The Computer
 
-*The Voyager one computer system was a system of multiple computer systems that prioritized reliability. The computer systems consists of three computer systems, the CCS the FDS and the AACS with duable redudincy on each system. The onboard memory was all CMOS volatile memory and magetic tape memory meaning that the onboard computer had no hard coded read only memory onboard witch makes it unsual compared to todays standards. The computer system requires contonous power in order to prevent the entire the program from being erased. Double hardware redundincy allowes for more hardware reliability and operating in pure ram memory allowes for software developers to work around any deterioiting or broken parts in the computer system.*
-
-// Change the abreviations
+*The Voyager 1 computer system consisted of multiple computer subsystems designed for reliability. These systems include three primary subsystems: the Command and Control System (CCS), the Flight Data Subsystem (FDS), and the Attitude and Articulation Control Subsystem (AACS), each with dual redundancy. The onboard memory comprises CMOS volatile memory and magnetic tape storage, meaning that the spacecraft has no hardcoded read-only memory, which is unusual by today’s standards. The system requires continuous power to prevent the loss of its entire program. Double hardware redundancy increases reliability, and the RAM-only design allows software developers to work around deteriorating or broken components in the computer system.*
 
 ### Mission-Specific Design
 
 - Built for longevity and low power consumption
-- Designed for reliabily in its hardware design
+- Designed for reliability in its hardware architecture
 - Radiation-hardened to withstand deep-space conditions
-
 
 ## Core Functions
 
-Voyager 1 has three key onboard computer subsystems, each with a specific role in ensuring the success of the mission:
+Voyager 1 has three key onboard computer subsystems, each playing a crucial role in ensuring mission success:
 
-### Computer Command System (CCS)
-*The CCS runs continuously, handling telecommands, telemetry, and coordinating with the FDS and AACS. It has 70kB of RAM and was inherited from the Viking missions due to budget constraints. As NASA's first double-redundant computer, its RAM-only design and cross-strapped power system ensured exceptional reliability. Both CCS units run simultaneously in three modes: individual (separate tasks), parallel (shared tasks), and tandem (critical operations like imaging, ensuring redundancy).
-*
+### Command and Control System (CCS)
+
+*The CCS runs continuously, handling telecommands, telemetry, and coordinating with the FDS and AACS. It has 70 KB of RAM and was inherited from the Viking missions due to budget constraints. As NASA’s first double-redundant computer, its RAM-only design and cross-strapped power system ensured exceptional reliability. Both CCS units run simultaneously in three modes: individual (separate tasks), parallel (shared tasks), and tandem (critical operations like imaging, ensuring redundancy).*
+
 - Processes and executes commands sent from Earth
 - Manages communication between different subsystems
 - Stores and forwards scientific data
 
-
 <p align="center">
-  <img src="ccs_viking_voyager_blockdiagram_nasa.jpeg" alt="Image Alt Text" width="700">
+  <img src="ccs_viking_voyager_blockdiagram_nasa.jpeg" alt="Block diagram of the CCS for Viking and Voyager" width="700">
 </p>
 
 *Block diagram for Viking and Voyager CCS. Image courtesy of NASA.*
 
-
-
 ### Flight Data Subsystem (FDS)
-*The FDS is a specialized computer that was designed for rapid data collection formating and transmission back to earth, the FDS is separate to the CCS because of its iherent rapid ouput bit rate. Much like the CCS the, program and telemetry data from sensors is stored in ram and any buffer overflow is stored on the onboard magnetic tape drive.*
+
+*The FDS is a specialized computer designed for rapid data collection, formatting, and transmission back to Earth. It operates separately from the CCS due to its inherently high output bit rate. Like the CCS, program and telemetry data from sensors are stored in RAM, with buffer overflow data saved on the onboard magnetic tape drive.*
+
 - Collects and formats data from scientific instruments
 - Compresses and encodes information for transmission to Earth
 - Operates under strict power and memory constraints
 
+<img src="black-and-white-image-of-a-box-with-white-and-gray-boxes-inside-text-is-above.jpeg" width="600">
+
+*Voyager’s flight data subsystem (FDS). Image courtesy of NASA.*
+
 ### Attitude and Articulation Control Subsystem (AACS)
-*The AACS was created off a modified CCS due to budgetary constraints; its main role is to keep the antenna pointed towards earth at all times using a combination of reaction wheels and thrusters. The AACS was the first of its kind to integrate a analog and digital computing elements in a new technology called HYSPACE. *
+
+*The AACS was developed as a modified version of the CCS due to budgetary constraints. Its primary role is to keep the antenna pointed towards Earth at all times using a combination of reaction wheels and thrusters. The AACS was the first of its kind to integrate both analog and digital computing elements in a new technology called HYSPACE.*
+
 - Controls Voyager’s orientation in space
 - Ensures the high-gain antenna remains pointed at Earth
 - Uses gyroscopes and star trackers for navigation
 
+<img src="NASM-A19990066000_CU01.jpg" width="600">
+
+*Image of the AACS. Transferred from NASA, Jet Propulsion Laboratory*
+
 ---
 
 ### Comparison to Modern Computers
-*When comparing modern computers to the voyager one omit the modern conviniences of screens, graphical interfaces, or even operatins systems all together because these are modern inventions designed for ease of use. When compared in this manner the Voyager-1 Computer is roughly 200,000 times slower than than the average modern computer with memory only half of the Texas Instruments Ti-84 Plus CE.*
+
+*When comparing Voyager 1’s computer to modern systems, one must omit conveniences like screens, graphical interfaces, or even operating systems, as these are relatively modern innovations designed for usability. In raw performance terms, the Voyager 1 computer is approximately 200,000 times slower than an average modern computer and has memory capacity only half that of a Texas Instruments Ti-84 Plus CE calculator.*
 
 #### The Operating System
-*Almost all conventional computers have some sort of operating system (Windows, MacOS, Linux) an operating system simply allowes for one machine to run and switch between tens if not thaousands of programs at the time. The Voyager-1 Computer system did not have an operating system and was interrupt driven in terms if OS design. This means that instead of timesharing programs on the computer, the computer sits idle (or stops its current task) until an interrupt kickstarts the machine to do some program. The lack of an operating system is unique in the sense that it cut down on complexity and increased reliability because the computer*
-- **Processing Power:** Voyager’s computers operate at a fraction of the speed of modern microprocessors.
-- **Storage:** Uses a few kilobytes of memory compared to gigabytes or terabytes today.
-- **Programming:** Runs programs stored in its working memory, there is no permanent program storage.
 
-> "add some quote"
+*Unlike conventional computers, which run operating systems such as Windows, macOS, or Linux, Voyager 1 does not have an operating system. Instead, it is interrupt-driven. This means that rather than timesharing programs, the computer remains idle or halts its current task until an interrupt triggers execution. The absence of an operating system reduces complexity and increases reliability by allocating fewer resources to OS management.*
+
+- **Processing Power:** Voyager’s computers operate at a fraction of the speed of modern microprocessors.
+- **Storage:** Uses only a few kilobytes of memory compared to gigabytes or terabytes today.
+- **Programming:** Runs programs stored in working memory, with no permanent program storage.
+
+> "Add some quote."
+
 ---
 
 ## Challenges of Deep Space Computing
 
 ### Keeping the Onboard Computer Running
-- Limited power supply from **Radioisotope Thermoelectric Generators (RTGs)**, which lose ~4W per year.
-- Extreme conditions: Voyager 1 operates in a near-absolute zero temperature environment.
-- Radiation exposure and cosmic ray interference affecting memory storage.
+
+*The Voyager 1 computer has faced multiple challenges throughout its 47-year voyage. Beyond surviving the vibrations of launch, the extreme temperature fluctuations of space, and the vacuum of interstellar travel, the computer must continuously contend with radiation. Cosmic rays and charged particles can damage components and induce soft errors, such as bit flips, altering the onboard program during flight. Additionally, the spacecraft’s **radioisotope thermoelectric generator (RTG)** loses power each year, requiring software adjustments to maintain functionality.*
+
+- Limited power supply from **RTGs**, which lose ~4W per year
+- Extreme conditions: Voyager 1 operates in a near-absolute zero temperature environment
+- Radiation exposure and cosmic ray interference affecting memory storage
 
 ## The Last Software Update
-- A recent update was sent to **work around damaged memory**, allowing the spacecraft to continue transmitting data.
+
+*In November 2023, Voyager 1 began transmitting corrupted data due to a malfunctioning chip in the FDS subsystem. This is where the RAM-only architecture proved invaluable—engineers on Earth were able to upload a software update that circumvented the faulty chip, enabling continued operation. In April 2024, Voyager 1 resumed sending data to Earth. Current efforts focus on synchronizing the magnetic tape drive with the rest of the system. This showcases the foresight, simplicity, and reliability of Voyager’s design, proving that a spacecraft 15 billion miles away can still be maintained through software updates.*
+
+- A recent update **worked around damaged memory**, allowing the spacecraft to continue transmitting data.
 - Engineers devised a solution despite having no real-time access to the hardware.
-- Showcases the ingenuity required for long-term deep-space missions.
+- Highlights the ingenuity required for long-term deep-space missions.
 
 ---
 
 ## Conclusion
 
-Voyager 1’s computer system stands as a testament to the brilliance of its designers. The mission highlights the importance of **reliability over raw power** in space exploration and serves as an inspiration for future deep-space missions. As the spacecraft continues drifting through interstellar space, it carries with it a message from humanity—both in the form of the **Golden Record** and in its enduring technological legacy.
+The Voyager-1 computer system is a testament to the ingenuity and foresight of its designers. Its architecture prioritizes reliability, adaptability, and longevity—qualities that have allowed it to remain the farthest continuously operating machine humanity has ever created. The onboard computer has expanded our understanding of the solar system and stands as a lasting reminder that wherever Voyager-1 travels, it carries proof that humanity once existed and reached for the stars.
 
 ---
 
@@ -92,38 +109,25 @@ Voyager 1’s computer system stands as a testament to the brilliance of its des
 The magazine article will be accompanied by a **code project** aimed at emulating aspects of the **Flight Data Subsystem (FDS)** and **Command and Data Subsystem (CCS)**. This project will provide insight into how Voyager’s computers process and transmit data across billions of miles.
 
 ---
+## Works Cited
 
-## Preliminary Bibliography
+**Chang, Kenneth.** "NASA Has Fixed Voyager 1, the Most Distant Spacecraft." *The New York Times*,  
+15 June 2024, https://www.nytimes.com/2024/06/15/science/space/nasa-voyager-one-fixed.html.  
 
-### Nasa Article
-[Nasa Article](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1977-084A) 
+**NASA.** "Voyager 1 Spacecraft Details." *NASA National Space Science Data Center*,  
+https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1977-084A.  
 
-### Stats on Sensors  
-[Voyager Imaging Science Subsystem](https://pds-ppi.igpp.ucla.edu/mission/Voyager/Imaging_Science_Subsystem_-_Wide_Angle)
+**NASA.** "Voyager Imaging Science Subsystem - Wide Angle." *NASA Planetary Data System*,  
+https://pds-ppi.igpp.ucla.edu/mission/Voyager/Imaging_Science_Subsystem_-_Wide_Angle.  
 
-### CCSDS Packet Standards  
-[CCSDS Official Standards](https://public.ccsds.org/Pubs/133x0b2e2.pdf)  
-[CCSDS Python Implementation](https://docs.ccsdspy.org/en/latest/user-guide/ccsds.html)
+**Consultative Committee for Space Data Systems (CCSDS).** *CCSDS Packet Standards.*  
+https://public.ccsds.org/Pubs/133x0b2e2.pdf.  
 
-### Other Sources  
-[Voyager Mission and Onboard Computers](https://www.allaboutcircuits.com/news/voyager-mission-anniversary-computers-command-data-attitude-control/)
+**CCSDS.** "CCSDS Python Implementation." *CCSDS Documentation*,  
+https://docs.ccsdspy.org/en/latest/user-guide/ccsds.html.  
 
+**All About Circuits.** "Voyager Mission Anniversary: Computers, Command, Data, and Attitude Control."  
+https://www.allaboutcircuits.com/news/voyager-mission-anniversary-computers-command-data-attitude-control/.  
 
-
-
-
-
-Sergio Rodriguez
-Digital Media Project Outline
-The Voyager One Computer
-Introduction
-- Brief Introduction on the Voyager one Mission and the significance of the longevity of the onboard system; include its relevance today.
-The Computer
-- Overview of the onboard computer for the layman, mission specific design compared to modern computer architecture and computers of the time.
-Core functions
-- Talk about the CCS, FDS, and AACS core computer functions.
-Challenges of Deep Space Computing
-- Brief overview on the challenges of keeping the onboard computer running and focus on the last update sent meant to circumvent damaged memory.
-Conclusion
-- The ‘so what’ of deep space computing and appreciation of the voyager one computer mission.
-Include the associated code project for FDS and CCS emulation. Very possible the magazine article will be written and formatted in markdown in the README.md
+**Analog Devices.** "Challenges for Electronic Circuits in Space Applications." *Analog Devices Signals & Systems*,  
+https://www.analog.com/en/signals/thought-leadership/challenges-for-electronic-circuits-in-space-applications.html.  
