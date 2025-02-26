@@ -10,24 +10,23 @@
 
 ## The Computer
 
-*The Voyager one computer system was a system of multiple computer systems that prioritized reliability. The computer systems consists of three computer systems, the CCS the FDS and the AACS with duable redudincy on each system. The onboard memory was all CMOS volatile memory meaning that the program had no hard coded read only memory onboard witch makes it unsual compared to todays standards. The computer system requires contonous power in order to prevent the entire the program from being erased. Double hardware redundincy allowes for more hardware reliability and operating in pure ram memory allowes for software developers to work around any deterioiting or broken parts in the computer system.*
+*The Voyager one computer system was a system of multiple computer systems that prioritized reliability. The computer systems consists of three computer systems, the CCS the FDS and the AACS with duable redudincy on each system. The onboard memory was all CMOS volatile memory and magetic tape memory meaning that the onboard computer had no hard coded read only memory onboard witch makes it unsual compared to todays standards. The computer system requires contonous power in order to prevent the entire the program from being erased. Double hardware redundincy allowes for more hardware reliability and operating in pure ram memory allowes for software developers to work around any deterioiting or broken parts in the computer system.*
 
 // Change the abreviations
 
 ### Mission-Specific Design
 
 - Built for longevity and low power consumption
-- Designed to handle long communication delays with Earth
+- Designed for reliabily in its hardware design
 - Radiation-hardened to withstand deep-space conditions
 
 ### Comparison to Modern Computers
-
+*The Voyager-1 Computer is roughly 200,000 times slower than than the average modern computer with memory comparable to a graphing calculator. The onboard computer stores long term memory in magnetic tape that is still somewhat functional to this day. *
 - **Processing Power:** Voyager’s computers operate at a fraction of the speed of modern microprocessors.
 - **Storage:** Uses a few kilobytes of memory compared to gigabytes or terabytes today.
-- **Programming:** Runs pre-defined instructions stored in memory, updated via radio signals from Earth.
+- **Programming:** Runs programs stored in its working memory, there is no permanent program storage.
 
-> "Voyager’s computers were never meant to last this long. They were designed for a 5-year mission, yet they’re still working nearly half a century later." - NASA Engineer
-
+> "add some quote"
 ---
 
 ## Core Functions
