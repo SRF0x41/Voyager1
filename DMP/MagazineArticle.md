@@ -4,7 +4,7 @@
 
 ## Introduction
 
-*Provide a captivating opening that draws the reader in. This section should set the stage for the rest of the article, giving an overview of the topic and why it's important.*
+*Voyager 1 is currently the farthest and fastest operational space probe. After concluding its flyby mission in 1980, it is now 15.6 billion miles away, continuing its journey beyond the Solar System into interstellar space. As of February 2025, its onboard computer system has completed 16,950 days of continuous uptime, with no expected shutdown until 2030, operating 42 years past its expiration date.*
 
 ---
 
@@ -54,6 +54,26 @@ Summarize the key points and leave the reader with a lasting impression. End wit
 
 
 
+---
+
+Sergio Rodriguez
+Digital Media Project Outline
+The Voyager One Computer
+
+- Brief Introduction on the Voyager one Mission and the significance of the longevity of the onboard system; include its relevance today.
+The Computer
+- Overview of the onboard computer for the layman, mission specific design compared to modern computer architecture and computers of the time.
+Core functions
+- Talk about the CCS, FDS, and AACS core computer functions.
+Challenges of Deep Space Computing
+- Brief overview on the challenges of keeping the onboard computer running and focus on the last update sent meant to circumvent damaged memory.
+Conclusion
+- The ‘so what’ of deep space computing and appreciation of the voyager one computer mission.
+Include the associated code project for FDS and CCS emulation. Very possible the magazine article will be written and formatted in markdown in the README.md
+
+---
+
+
 
 
 
@@ -68,3 +88,7 @@ https://pds-ppi.igpp.ucla.edu/mission/Voyager/Imaging_Science_Subsystem_-_Wide_A
 CCSDS packet standards
 https://public.ccsds.org/Pubs/133x0b2e2.pdf
 https://docs.ccsdspy.org/en/latest/user-guide/ccsds.html 
+
+
+Other Sources
+https://www.allaboutcircuits.com/news/voyager-mission-anniversary-computers-command-data-attitude-control/ 
