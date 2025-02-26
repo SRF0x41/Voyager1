@@ -2,7 +2,7 @@
 
 **By Sergio Rodriguez**
 <p align="center">
-<img src="voyagercontrolroom.jpeg" width = "500">
+<img src="voyagercontrolroom.jpeg" width = "600">
 </p>
 
 *Image of the Software Testing room during the Voyager days*
