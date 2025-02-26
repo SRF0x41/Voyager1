@@ -2,10 +2,10 @@
 
 **By Sergio Rodriguez**
 <p align="center">
-<img src="voyagercontrolroom.jpeg" width = "600">
+<img src="voyager-digital-recorder.jpg" width = "600">
 </p>
 
-*Image of the Software Testing room during the Voyager days*
+*Voyager's 8-track digital tape recorder. NASA/JPL-Caltech*
 
 
 ## Introduction
