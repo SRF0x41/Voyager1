@@ -2,10 +2,10 @@
 
 **By Sergio Rodriguez**
 <p align="center">
-<img src="voyager-digital-recorder.jpg" width = "600">
+  <img src="voyager-digital-recorder.jpg" width="500" style="transform: rotate(90deg);">
 </p>
+<p align="center"><em>Voyager's 8-track digital tape recorder. NASA/JPL-Caltech</em></p>
 
-*Voyager's 8-track digital tape recorder. NASA/JPL-Caltech*
 
 
 ## Introduction
