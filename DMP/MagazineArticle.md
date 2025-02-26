@@ -1,6 +1,11 @@
-# Voyager-1 Computer
+# Voyager-1's Computer: Ensuring Survival Across Light Years
 
 **By Sergio Rodriguez**
+
+<img src="voyagercontrolroom.jpeg" width = "500">
+
+*Image of the Software Testing room during the Voyager days*
+
 
 ## Introduction
 
@@ -131,3 +136,6 @@ https://www.allaboutcircuits.com/news/voyager-mission-anniversary-computers-comm
 
 **Analog Devices.** "Challenges for Electronic Circuits in Space Applications." *Analog Devices Signals & Systems*,  
 https://www.analog.com/en/signals/thought-leadership/challenges-for-electronic-circuits-in-space-applications.html.  
+
+**Horgan, John.** "Vintage Voyager Probes: The Lasting Legacy of NASA's Space Explorers." *Wired*,  
+https://www.wired.com/2013/09/vintage-voyager-probes/.  
