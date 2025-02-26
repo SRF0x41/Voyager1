@@ -1,8 +1,9 @@
 # Voyager-1's Computer: Ensuring Survival Across Light Years
 
 **By Sergio Rodriguez**
-
+<p align="center">
 <img src="voyagercontrolroom.jpeg" width = "500">
+</p>
 
 *Image of the Software Testing room during the Voyager days*
 
