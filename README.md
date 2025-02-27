@@ -114,7 +114,7 @@ The Voyager-1 computer system is a testament to the ingenuity and foresight of i
 
 ## Associated Code Project
 
-The magazine article will be accompanied by a **code project** aimed at emulating aspects of the **Flight Data Subsystem (FDS)** and **Command and Data Subsystem (CCS)**. This project will provide insight into how Voyager’s computers process and transmit data across billions of miles.
+code docs
 
 ---
 ## Works Cited
