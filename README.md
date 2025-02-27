@@ -110,6 +110,11 @@ Voyager 1 has three key onboard computer subsystems, each playing a crucial role
 
 The Voyager-1 computer system is a testament to the ingenuity and foresight of its designers. Its architecture prioritizes reliability, adaptability, and longevity—qualities that have allowed it to remain the farthest continuously operating machine humanity has ever created. The onboard computer has expanded our understanding of the solar system and stands as a lasting reminder that wherever Voyager-1 travels, it carries proof that humanity once existed and reached for the stars.
 
+
+<p align="center">
+  <img src="DMPAssets/voyager_1__illustration_1157145069.jpeg" width="600">
+</p>
+
 ---
 
 ## Associated Code Project
