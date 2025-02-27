@@ -1,4 +1,4 @@
-# Voyager-1's Computer: Ensuring Survival Across Light Years
+# Voyager-1's Computer: Ensuring Survival Beyond the Solar System
 
 **By Sergio Rodriguez**
 <p align="center">
