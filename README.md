@@ -124,26 +124,36 @@ code docs
 ---
 ## Works Cited
 
-**Chang, Kenneth.** "NASA Has Fixed Voyager 1, the Most Distant Spacecraft." *The New York Times*,  
-15 June 2024, https://www.nytimes.com/2024/06/15/science/space/nasa-voyager-one-fixed.html.  
+**Chang, Kenneth.** "NASA Has Fixed Voyager 1, the Most Distant Spacecraft."  
+*The New York Times*, 15 June 2024,  
+[https://www.nytimes.com/2024/06/15/science/space/nasa-voyager-one-fixed.html](https://www.nytimes.com/2024/06/15/science/space/nasa-voyager-one-fixed.html).  
 
-**NASA.** "Voyager 1 Spacecraft Details." *NASA National Space Science Data Center*,  
-https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1977-084A.  
+**NASA.** "Voyager 1 Spacecraft Details."  
+*NASA National Space Science Data Center*,  
+[https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1977-084A](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1977-084A).  
 
-**NASA.** "Voyager Imaging Science Subsystem - Wide Angle." *NASA Planetary Data System*,  
-https://pds-ppi.igpp.ucla.edu/mission/Voyager/Imaging_Science_Subsystem_-_Wide_Angle.  
+**NASA.** "Voyager Imaging Science Subsystem - Wide Angle."  
+*NASA Planetary Data System*,  
+[https://pds-ppi.igpp.ucla.edu/mission/Voyager/Imaging_Science_Subsystem_-_Wide_Angle](https://pds-ppi.igpp.ucla.edu/mission/Voyager/Imaging_Science_Subsystem_-_Wide_Angle).  
 
 **Consultative Committee for Space Data Systems (CCSDS).** *CCSDS Packet Standards.*  
-https://public.ccsds.org/Pubs/133x0b2e2.pdf.  
+[https://public.ccsds.org/Pubs/133x0b2e2.pdf](https://public.ccsds.org/Pubs/133x0b2e2.pdf).  
 
-**CCSDS.** "CCSDS Python Implementation." *CCSDS Documentation*,  
-https://docs.ccsdspy.org/en/latest/user-guide/ccsds.html.  
+**CCSDS.** "CCSDS Python Implementation."  
+*CCSDS Documentation*,  
+[https://docs.ccsdspy.org/en/latest/user-guide/ccsds.html](https://docs.ccsdspy.org/en/latest/user-guide/ccsds.html).  
 
 **All About Circuits.** "Voyager Mission Anniversary: Computers, Command, Data, and Attitude Control."  
-https://www.allaboutcircuits.com/news/voyager-mission-anniversary-computers-command-data-attitude-control/.  
+[https://www.allaboutcircuits.com/news/voyager-mission-anniversary-computers-command-data-attitude-control/](https://www.allaboutcircuits.com/news/voyager-mission-anniversary-computers-command-data-attitude-control/).  
 
-**Analog Devices.** "Challenges for Electronic Circuits in Space Applications." *Analog Devices Signals & Systems*,  
-https://www.analog.com/en/signals/thought-leadership/challenges-for-electronic-circuits-in-space-applications.html.  
+**Analog Devices.** "Challenges for Electronic Circuits in Space Applications."  
+*Analog Devices Signals & Systems*,  
+[https://www.analog.com/en/signals/thought-leadership/challenges-for-electronic-circuits-in-space-applications.html](https://www.analog.com/en/signals/thought-leadership/challenges-for-electronic-circuits-in-space-applications.html).  
 
-**Horgan, John.** "Vintage Voyager Probes: The Lasting Legacy of NASA's Space Explorers." *Wired*,  
-https://www.wired.com/2013/09/vintage-voyager-probes/.  
+**Horgan, John.** "Vintage Voyager Probes: The Lasting Legacy of NASA's Space Explorers."  
+*Wired*,  
+[https://www.wired.com/2013/09/vintage-voyager-probes/](https://www.wired.com/2013/09/vintage-voyager-probes/).  
+
+**Limeng Du.** "SeeedStudio XIAO ESP32S3 Sense Camera - Take Photos Example."  
+*GitHub Repository*,  
+[https://github.com/limengdu/SeeedStudio-XIAO-ESP32S3-Sense-camera/blob/main/take_photos/take_photos.ino](https://github.com/limengdu/SeeedStudio-XIAO-ESP32S3-Sense-camera/blob/main/take_photos/take_photos.ino).  
