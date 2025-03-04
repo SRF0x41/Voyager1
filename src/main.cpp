@@ -64,6 +64,8 @@ void setup()
   Serial.println("Main Camera ready.");
 }
 
+
+
 /*
 int main()
 {
