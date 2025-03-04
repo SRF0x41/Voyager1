@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "CCSDS_header.h"
-#include "ParserCCSDS.cpp"
+#include "CCSDS_Parser.cpp"
 
 #define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM
 #include "camera_pins.h"
@@ -151,6 +151,12 @@ void loop()
   {
     // create image packet
     CCSDS_Packet *packet = createImagePacket(fb->buf, fb->len);
+
+    size_t packet_size = sizeof(CCSDS_PrimaryHeader) + fb->len;
+    Serial.printf("Image packet len: %ld\n", packet_size);
+
+    CCSDS_Parser parser;
+    parser.printCCSDSPacket(packet, packet_size, false);
 
     // Frees
     free(packet);
