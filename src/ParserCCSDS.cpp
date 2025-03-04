@@ -12,13 +12,52 @@ private:
 public:
     ParserCCSDS() {}
 
+    void readTransmission(){
+        ifstream inFile("Transmission.bin", ios::binary | ios::ate);
+
+        if(!inFile){
+            cerr << "Error opening Transmission.bin for in" << "\n";
+        }
+        
+        // get file size
+        streamsize fileSize = inFile.tellg();
+        inFile.seekg(0, ios::beg); // Move back to the beggining
+
+        // Debug print
+        printf("Fize size bytes %ld\n ", fileSize);
+
+        // Allocate buffer array
+        uint8_t buffer[fileSize];
+
+        inFile.read(reinterpret_cast<char*>(buffer), fileSize);
+
+        inFile.close();
+
+        printf("--- DATA LOADED FROM TRANSMISSION ---\n");
+        printCCSDSPacket(buffer, fileSize, true);
+        
+
+
+    }
+
     void writeTransmission(CCSDS_Packet *packet)
     {
-        size_t packetSize = sizeof(packet);
-        printf("\nWrite to bin %ld\n",packetSize);
+        size_t packetSize = sizeof(CCSDS_PrimaryHeader) + packet->primaryHeader.packet_length;
+
         // Serialize Packet into a Byte Array
         uint8_t buffer[packetSize];
         memcpy(buffer, packet, packetSize);
+
+        ofstream outFile("Transmission.bin", ios::binary);
+
+        if (!outFile)
+        {
+            cerr << "Error opening Tranmission.bin for out" << "\n";
+        }
+
+        outFile.write(reinterpret_cast<const char*>(buffer), packetSize);
+
+        outFile.close();
     }
 
     void printCCSDSPacket(const uint8_t *buffer, size_t bufferSize, bool print_data)
