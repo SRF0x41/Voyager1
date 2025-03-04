@@ -114,6 +114,27 @@ int main()
 }
 */
 
+CCSDS_Packet *createImagePacket(camera_fb_t *image_buffer, size_t image_len){
+  CCSDS_Packet *packet = (CCSDS_Packet*)malloc(sizeof(CCSDS_PrimaryHeader) + image_len);
+   if (!packet)
+    {
+        std::cerr << "Memory allocation failed!" << std::endl;
+        return -1;
+    }
+
+    // Initialize Primary Header
+    packet->primaryHeader.version = 0b001;
+    packet->primaryHeader.type = 0;
+    packet->primaryHeader.secondary_header = 0;
+    packet->primaryHeader.apid = 100;
+    packet->primaryHeader.sequence_flags = 3;
+    packet->primaryHeader.sequence_count = 42;
+    packet->primaryHeader.packet_length = payloadSize;
+    memcpy(packet->data,image_buffer,image_len);
+
+    return packet;
+}
+
 
 void loop()
 {
