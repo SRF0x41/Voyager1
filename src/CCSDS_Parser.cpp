@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #include "CCSDS_header.h" // Include the CCSDS header file
-#include "FS.h"           // File System for ESP32 (SPIFFS or SD)
-#include "SPIFFS.h"       // SPIFFS library for ESP32
 #define INCLUDE_SECONDARY_HEADER
+
+/* --- Onboard CCSDS Parser ---- */
 
 class ParserCCSDS
 {
