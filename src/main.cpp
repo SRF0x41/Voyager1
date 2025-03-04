@@ -5,12 +5,11 @@
 #include "camera_pins.h"
 #include <stdio.h>
 #include <stdint.h>
+#include "CCSDS_header.h"
 #define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM
 
 /*** Function Prototypes ***/
-void createPrimaryHeader_image(CCSDS_Packet *packet, size_t data_len);
-void parseCCSDS();
-void sendData(string filePath, CCSDS_Packet *packet);
+
 
 unsigned long lastCaptureTime = 0; // Last shooting time
 int imageCount = 1;                // File Counter
@@ -64,41 +63,57 @@ void setup()
   Serial.println("Main Camera ready.");
 }
 
-/*Structs*/
-
-#pragma pack(push, 1) // Ensure no padding is added to the struct
-
-typedef struct
+/*
+int main()
 {
-  uint8_t version;          // 3 bits version
-  uint8_t type;             // 1 bit type 0 for telemetry 1 for telecommand
-  uint8_t secondary_header; // 1 bit for true false
-  uint8_t apid;             // [8 bits APID LSB]
-  uint8_t sequence_flags;   // [2 bits Sequence Flags] | [14 bits Sequence Count MSB]
-  uint8_t sequence_count;   // [8 bits Sequence Count LSB]
-  uint16_t packet_length;   // [16 bits Packet Length] (Payload size - 1)
-} CCSDS_PrimaryHeader;
+    size_t payloadSize = 3; // Example: 3-byte payload
+    size_t packetSize = sizeof(CCSDS_PrimaryHeader) + payloadSize;
 
-#pragma pack(pop) // Restore default struct padding
+    // Allocate memory dynamically for the CCSDS_Packet with enough space for data[]
+    CCSDS_Packet *packet = (CCSDS_Packet *)malloc(sizeof(CCSDS_PrimaryHeader) + payloadSize);
+    if (!packet)
+    {
+        std::cerr << "Memory allocation failed!" << std::endl;
+        return -1;
+    }
 
-#pragma pack(push, 1)
-typedef struct
-{
-  uint32_t timestamp; // Example: 32-bit timestamp
-  uint16_t data_id;   // Identifier for specific data type
-} CCSDS_SecondaryHeader;
-#pragma pack(pop)
+    // Initialize Primary Header
+    packet->primaryHeader.version = 0b001;
+    packet->primaryHeader.type = 0;
+    packet->primaryHeader.secondary_header = 0;
+    packet->primaryHeader.apid = 100;
+    packet->primaryHeader.sequence_flags = 3;
+    packet->primaryHeader.sequence_count = 42;
+    packet->primaryHeader.packet_length = payloadSize;
 
-#pragma pack(push, 1)
-typedef struct
-{
-  CCSDS_PrimaryHeader primaryHeader;
-#ifdef INCLUDE_SECONDARY_HEADER
-  CCSDS_SecondaryHeader secondaryHeader; // Optional
-#endif
-  uint8_t data[]; // Payload (variable length)
-} CCSDS_Packet;
-#pragma pack(pop)
+    // Example Payload Data
+    uint8_t exampleData[] = {0xAB, 0xCD, 0xEF};
+    memcpy(packet->data, exampleData, payloadSize);
+
+    // Serialize Packet into a Byte Array
+    uint8_t buffer[packetSize];
+    memcpy(buffer, packet, packetSize);
+
+    // Read Back the Packet
+    cout << "Reading CCSDS Packet..." << std::endl;
+
+    ParserCCSDS parser;
+    parser.printCCSDSPacket(buffer, packetSize, true);
+
+    // Writing to transmission.bin
+    cout << "Writing to Transmission.bin" << "\n";
+    parser.writeTransmission(packet);
+
+    // Readint transmission.bin
+    parser.readTransmission();
+
+    // Free allocated memory
+    free(packet);
+
+    return 0;
+}
+*/
+
 
 void loop()
 {
@@ -135,79 +150,3 @@ void loop()
   }
 }
 
-void createPrimaryHeader_image(CCSDS_Packet *packet, size_t data_len)
-{
-  if (packet == nullptr)
-  {
-    return;
-  }
-  packet->primaryHeader.version = 0b000;
-  packet->primaryHeader.type = 0;
-  packet->primaryHeader.secondary_header = 0;
-  // create a camera apid code
-  packet->primaryHeader.apid = 0x7FF;
-  // to bits describing firt or continuation
-  packet->primaryHeader.sequence_flags = 0b10;
-  // count the number of packets increments with each Packet 32 is 32nd packet
-  packet->primaryHeader.sequence_count = 0;
-  // set to the size of one frame
-  packet->primaryHeader.packet_length = data_len;
-}
-
-void sendData(string filePath, CCSDS_Packet *packet)
-{
-  FILE *file = fopen("filename.txt", "w"); // Open file in write mode
-  if (file == NULL)
-  {
-    perror("Error opening file");
-    return 1;
-  }
-
-  fprintf(file, "Hello, File!\n"); // Write to the file
-  fclose(file);                    // Close the file
-
-  return 0;
-}
-
-/*Code bibliography for setting up camera
-https://github.com/limengdu/SeeedStudio-XIAO-ESP32S3-Sense-camera/blob/main/take_photos/take_photos.ino*/
-
-/* Notes
-Serial.println("Captured frame:");
-        Serial.print("Height: ");
-        Serial.println(fb->height);
-        Serial.print("Width: ");
-        Serial.println(fb->width);
-        Serial.print("Length: ");
-        Serial.println(fb->len);
-        // Process the frame here, such as reading pixel data
-        // For example, print the RGB565 pixel data
-        uint16_t *pixels = (uint16_t *)fb->buf;
-
-for (int i = 0; i < fb->width * fb->height; i++)
-        {
-            uint16_t pixel = pixels[i];
-            uint8_t r = (pixel >> 11) & 0x1F; // Red component (5 bits)
-            uint8_t g = (pixel >> 5) & 0x3F;  // Green component (6 bits)
-            uint8_t b = pixel & 0x1F;         // Blue component (5 bits)
-
-            // Print RGB values for a few pixels (e.g., first pixel)
-            if (i == 0)
-            {
-                Serial.print("First pixel R=");
-                Serial.print(r);
-                Serial.print(" G=");
-                Serial.print(g);
-                Serial.print(" B=");
-                Serial.println(b);
-            }
-        }*/
-
-/*
-void loop() {
-    if (Serial.available() > 0) {  // Check if data is available
-        String receivedData = Serial.readString();  // Read incoming string
-        Serial.print("Received: ");
-        Serial.println(receivedData);
-    }
-}*/
