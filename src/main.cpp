@@ -2,14 +2,15 @@
 #include "FS.h"
 #include "SD.h"
 #include "SPI.h"
-#include "camera_pins.h"
 #include <stdio.h>
 #include <stdint.h>
 #include "CCSDS_header.h"
+#include "ParserCCSDS.cpp"
+
 #define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM
+#include "camera_pins.h"
 
 /*** Function Prototypes ***/
-
 
 unsigned long lastCaptureTime = 0; // Last shooting time
 int imageCount = 1;                // File Counter
@@ -114,27 +115,27 @@ int main()
 }
 */
 
-CCSDS_Packet *createImagePacket(camera_fb_t *image_buffer, size_t image_len){
-  CCSDS_Packet *packet = (CCSDS_Packet*)malloc(sizeof(CCSDS_PrimaryHeader) + image_len);
-   if (!packet)
-    {
-        std::cerr << "Memory allocation failed!" << std::endl;
-        return -1;
-    }
+CCSDS_Packet *createImagePacket(uint8_t *image_buffer, size_t image_len)
+{
+  CCSDS_Packet *packet = (CCSDS_Packet *)malloc(sizeof(CCSDS_PrimaryHeader) + image_len);
+  if (!packet)
+  {
+    Serial.println("Memory allocation failed!");
+    return nullptr;
+  }
 
-    // Initialize Primary Header
-    packet->primaryHeader.version = 0b001;
-    packet->primaryHeader.type = 0;
-    packet->primaryHeader.secondary_header = 0;
-    packet->primaryHeader.apid = 100;
-    packet->primaryHeader.sequence_flags = 3;
-    packet->primaryHeader.sequence_count = 42;
-    packet->primaryHeader.packet_length = payloadSize;
-    memcpy(packet->data,image_buffer,image_len);
+  // Initialize Primary Header
+  packet->primaryHeader.version = 0b001;
+  packet->primaryHeader.type = 0;
+  packet->primaryHeader.secondary_header = 0;
+  packet->primaryHeader.apid = 100;
+  packet->primaryHeader.sequence_flags = 3;
+  packet->primaryHeader.sequence_count = 42;
+  packet->primaryHeader.packet_length = image_len;
+  memcpy(packet->data, image_buffer, image_len);
 
-    return packet;
+  return packet;
 }
-
 
 void loop()
 {
@@ -146,21 +147,11 @@ void loop()
 
   if (fb)
   {
-
-    // Create CCSDS_Packet
-    CCSDS_Packet *ccsds_packet = (CCSDS_Packet *)malloc(sizeof(CCSDS_Packet) + fb->len);
-
-    // Create the primary header for the packet
-    createPrimaryHeader_image(ccsds_packet, fb->len);
-
-    // Copy the image data to the CCSDS packet payload
-    memcpy(ccsds_packet->data, fb->buf, fb->len);
-
-    // Send datagit
-    sendData(ccsds_packet);
+    // create image packet
+    CCSDS_Packet *packet = createImagePacket(fb->buf, fb->len);
 
     // Frees
-    free(ccsds_packet);
+    free(packet);
 
     // Return the frame buffer after use
     esp_camera_fb_return(fb);
@@ -170,4 +161,3 @@ void loop()
     Serial.println("Camera capture failed");
   }
 }
-
