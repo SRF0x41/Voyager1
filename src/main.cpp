@@ -109,6 +109,8 @@ void loop()
     parser.printCCSDS(packet, false);
 
     // Serialize and send
+    uint8_t START_WORD[3] = {0xAA, 0xBB, 0xCC};
+    Serial.write(START_WORD, sizeof(START_WORD));
     Serial.write(reinterpret_cast<uint8_t *>(packet), packet_size);
 
 
