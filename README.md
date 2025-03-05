@@ -82,7 +82,6 @@ Voyager 1 has three key onboard computer subsystems, each playing a crucial role
 - **Storage:** Uses only a few kilobytes of memory compared to gigabytes or terabytes today.
 - **Programming:** Runs programs stored in working memory, with no permanent program storage.
 
-> "Add some quote."
 
 ---
 
