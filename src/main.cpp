@@ -89,11 +89,12 @@ CCSDS_Packet *createImagePacket(uint8_t *image_buffer, size_t image_len)
 
 void loop()
 {
-  delay(1000); // Wait for a second before taking the next photo
-  Serial.println("Capturing image...");
+  delay(5000); // Wait for a second before taking the next photo
+  //Serial.println("\nCapturing image...");
 
   // Capture a frame from the camera
   camera_fb_t *fb = esp_camera_fb_get();
+  //Serial.printf("Buffer len %ld\n", fb->len);
 
   if (fb)
   {
@@ -101,11 +102,15 @@ void loop()
     CCSDS_Packet *packet = createImagePacket(fb->buf, fb->len);
 
     size_t packet_size = sizeof(CCSDS_PrimaryHeader) + fb->len;
-    Serial.printf("Image packet len: %ld\n", packet_size);
+    //Serial.printf("Image packet len: %ld\n", packet_size);
 
     // CCSDS parsing
     CCSDS_Parser parser;
-    parser.printCCSDSPacket(packet, packet_size, false);
+    parser.printCCSDS(packet, false);
+
+    // Serialize and send
+    Serial.write(reinterpret_cast<uint8_t *>(packet), packet_size);
+
 
     // Frees
     free(packet);

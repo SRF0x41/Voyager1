@@ -14,7 +14,8 @@ typedef struct
     uint16_t apid : 11;            // 11-bit APID (Application Process Identifier)
     uint8_t sequence_flags : 2;   // 2-bit Sequence Flags
     uint16_t sequence_count : 14; // 14-bit Sequence Count
-    uint16_t packet_length;       // 16-bit Packet Length // why packet_length - 1?
+    // once the moniter is working cut this back to 16 and send multiple packets
+    uint32_t packet_length;       // 16-bit Packet Length // why packet_length - 1?
 } CCSDS_PrimaryHeader;
 
 #pragma pack(pop) // Restore default alignment

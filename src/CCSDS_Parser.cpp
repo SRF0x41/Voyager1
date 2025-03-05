@@ -4,16 +4,70 @@
 
 /* --- Onboard CCSDS Parser ---- */
 
-class ParserCCSDS
+class CCSDS_Parser
 {
 public:
-    ParserCCSDS() {}
+    CCSDS_Parser() {}
 
     void begin()
     {
     }
 
-    void printCCSDSPacket(const uint8_t *buffer, size_t bufferSize, bool print_data)
+    CCSDS_Packet *parseCCSDS(uint8_t *buffer)
+    {
+        // Just copy the primary header to get payload size
+        CCSDS_PrimaryHeader primary_header;
+        memcpy(&primary_header, buffer, sizeof(CCSDS_PrimaryHeader));
+
+        // get payload size and total size
+        CCSDS_Packet *packet = (CCSDS_Packet *)malloc(sizeof(CCSDS_PrimaryHeader) + primary_header.packet_length);
+
+        // Copy primary header
+        memcpy(packet, buffer, sizeof(CCSDS_PrimaryHeader));
+
+        // Copy payload
+        memcpy(packet->data, buffer + sizeof(CCSDS_PrimaryHeader), primary_header.packet_length);
+
+        return packet;
+    }
+
+    void printCCSDS(CCSDS_Packet *packet, bool dispPayload)
+{
+    // Print CCSDS Packet Details
+    Serial.println("CCSDS Packet Details:");
+    Serial.print("Version: ");
+    Serial.println(packet->primaryHeader.version);
+    
+    Serial.print("Type: ");
+    Serial.println(packet->primaryHeader.type);
+    
+    Serial.print("APID: ");
+    Serial.println(packet->primaryHeader.apid);
+    
+    Serial.print("Sequence Flags: ");
+    Serial.println(packet->primaryHeader.sequence_flags);
+    
+    Serial.print("Sequence Count: ");
+    Serial.println(packet->primaryHeader.sequence_count);
+    
+    Serial.print("Packet Length: ");
+    Serial.println(packet->primaryHeader.packet_length);
+
+    if (dispPayload)
+    {
+        Serial.print("Payload: ");
+        for (size_t i = 0; i < packet->primaryHeader.packet_length; i++)
+        {
+            Serial.printf("%02X ", packet->data[i]);  // Print payload in hex format
+        }
+        Serial.println();
+    }
+}
+
+
+    
+
+    void printCCSDS(const uint8_t *buffer, size_t bufferSize, bool print_data)
     {
         if (bufferSize < sizeof(CCSDS_PrimaryHeader))
         {
