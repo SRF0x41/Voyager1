@@ -124,6 +124,16 @@ This project demonstrates how to capture images using the Xiao ESP32S3 camera mo
 
 The project draws inspiration from space missions like **Voyager 1**, which has been transmitting data back to Earth using the CCSDS packet format for decades. Just as Voyager 1 continues to send telemetry and scientific data across vast distances, this project mimics the same principles of packetizing data for transmission over serial communication.
 
+### Associated Projects
+
+This project is closely tied to the **Voyager-1 Moniter** project that works together to capture and monitor the CCSDS packets:
+
+1. **CCSDS Packet Handling for ESP32 Camera** – This current project focuses on capturing images with the ESP32 camera module, packing the image data into a CCSDS packet, and transmitting it via serial communication.
+
+2. **Voyager1-Monitor** – This is the monitoring project designed to receive the transmitted CCSDS packets from the ESP32, decode them, and display the data in a human-readable format. The [Voyager1-Monitor GitHub repository](https://github.com/SRF0x41/Voyager1-Moniter) contains all the necessary tools and code to monitor the serial communication and analyze the packet structure.
+
+By using both projects, you can capture and transmit data from the ESP32 camera and then monitor the transmitted packets to verify their integrity and structure.
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -192,7 +202,7 @@ The packet is packed with `#pragma pack(push, 1)` to ensure no padding and prope
 
 ### CCSDS Header Structure
 
-The `CCSDS_header.h` file defines the structure of the CCSDS packet, including the primary header, the optional secondary header, and the data payload.
+The `CCSDS_header.h` file defines the structure of the CCSDS packet. The primary and seconday header structs are packaged into the main packet struct. 
 
 ### Setup Function
 
@@ -222,30 +232,28 @@ The `CCSDS_Parser` class is responsible for parsing the CCSDS packet:
 2. **Upload the code** to your ESP32 using an Arduino style IDE (I used VsCode with PlatformIo).
    
 3. **Moniter Packet**
-    - Using [Voyager1-Moniter](https://github.com/SRF0x41/Voyager1-Moniter), moniter the packets sent over
+    - Using [Voyager1-Moniter](https://github.com/SRF0x41/Voyager1-Moniter), moniter the packets sent over.
    
 4. **Monitor Image Packets**:
    - Each captured image will be wrapped in a CCSDS packet and sent via serial.
    - The packet details (including primary header and payload) will be printed to the serial monitor.
 
 5. **CCSDS Packet Details**:
-   - The packet is serialized into a byte array, 
+   - The packet is serialized into a byte array when sent over serial. 
 
 ## Why Low-Level Programming Was Important
 
 ### Memory Management:
-Low-level programming is crucial in resource-constrained environments like the ESP32. This microcontroller has limited memory, and controlling memory allocation directly is essential for efficient operation. By using **manual memory management** (e.g., `malloc()` and `free()`), this system mimics the resource-conscious programming required for space applications. Space missions like **Voyager 1** face extreme resource constraints, where every byte of memory and every instruction must be optimized to avoid waste and ensure successful data transmission. The low-level approach in this project allows for tight control over memory usage, which is essential when dealing with limited resources, similar to Voyager 1's onboard systems.
+Much like the onboard computers on the Voyager probe, the ESP32 platform is resource-constrained, and low-level memory operations are crucial for efficient operation. Space missions like Voyager 1 require extreme memory and instruction optimization to ensure successful data transmission. This focus on memory and processing efficiency ensures that data can be reliably transmitted over vast distances, even with limited resources.
+
 
 ### Efficient Data Packing:
 The CCSDS packet format demands precise control over the packing of data, as even small inefficiencies can have significant impacts on data integrity and transmission reliability. Low-level programming allows us to manually pack the headers and payload to ensure there is no unnecessary padding or alignment issues. This is particularly critical for space systems like **Voyager 1**, where every byte of data must be packed efficiently for long-distance transmission.
 
-### Data Transmission:
-Just as Voyager 1 uses **low-level protocols** to send data back to Earth, this project implements low-level serial communication to transmit the CCSDS packets. This ensures efficient, error-free data transmission that mimics the kind of communication used in space missions. Low-level control of serial transmission allows for the manual handling of byte streams, ensuring that data is sent correctly, and critical information, like image data, is preserved without corruption.
-
 ## Future Improvements
 
 - Implement the secondary header for additional metadata, such as timestamp or other identifiers.
-- Create a micro-kernel for recieving telecommand data. 
+- Create a "micro-kernel" for recieving telecommand data. 
 
 ---
 ## Works Cited
