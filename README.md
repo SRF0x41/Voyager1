@@ -153,6 +153,7 @@ This project is inspired by the data transmission methods used in **Voyager 1**.
 ## Software Requirements
 
 - ESP32 Camera library (`esp_camera.h`)
+- Arduino style IDE
 
 ## File Structure
 
@@ -218,17 +219,17 @@ The `CCSDS_Parser` class is responsible for parsing the CCSDS packet:
 1. **Install dependencies**:
    - Install the `esp_camera` library for ESP32.
    
-2. **Upload the code** to your ESP32 using the Arduino IDE.
+2. **Upload the code** to your ESP32 using an Arduino style IDE (I used VsCode with PlatformIo).
    
-3. **Open the Serial Monitor** to view the captured images in the form of CCSDS packets.
+3. **Moniter Packet**
+    - Using [Voyager1-Moniter](https://github.com/SRF0x41/Voyager1-Moniter), moniter the packets sent over
    
 4. **Monitor Image Packets**:
    - Each captured image will be wrapped in a CCSDS packet and sent via serial.
    - The packet details (including primary header and payload) will be printed to the serial monitor.
 
 5. **CCSDS Packet Details**:
-   - The serial monitor will display the packet's version, APID, sequence count, and packet length.
-   - If the payload option is enabled, the image data will be printed in hexadecimal format.
+   - The packet is serialized into a byte array, 
 
 ## Why Low-Level Programming Was Important
 
