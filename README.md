@@ -118,7 +118,133 @@ The Voyager-1 computer system is a testament to the ingenuity and foresight of i
 
 ## Associated Code Project
 
-code docs
+# CCSDS Packet Handling for ESP32 Camera
+
+This project demonstrates how to capture images using the Xiao ESP32S3 camera module, wrap the captured image into a CCSDS (Consultative Committee for Space Data Systems) packet, and transmit it using serial communication. This is useful for telemetry or telecommand systems, especially in space-related applications that rely on CCSDS as a data format.
+
+The project draws inspiration from space missions like **Voyager 1**, which has been transmitting data back to Earth using the CCSDS packet format for decades. Just as Voyager 1 continues to send telemetry and scientific data across vast distances, this project mimics the same principles of packetizing data for transmission over serial communication.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Hardware Requirements](#hardware-requirements)
+- [Software Requirements](#software-requirements)
+- [File Structure](#file-structure)
+- [CCSDS Packet Format](#ccsds-packet-format)
+- [Code Description](#code-description)
+  - [CCSDS Header Structure](#ccsds-header-structure)
+  - [Setup Function](#setup-function)
+  - [Image Capture and Packet Creation](#image-capture-and-packet-creation)
+  - [CCSDS Parser](#ccsds-parser)
+- [Usage](#usage)
+
+## Overview
+
+This project captures images from the Xiao ESP32S3 camera module and packages them into a CCSDS packet format, which includes a primary header with metadata on the type of data being packaged such as telemetry, instrument type, and packet length. There is an optional secondary header containing additional metadata such as a timestamp. The primary header, secondary header, and data are wrapped into one packet and sent over serial.
+
+This project is inspired by the data transmission methods used in **Voyager 1**. Similarly, this project was written in **C/C++** to mimic the low-level programming necessary for operating the onboard computers.
+
+
+## Hardware Requirements
+
+- Xiao ESP32S3 camera module (or compatible ESP32 camera module)
+- Serial Monitor for debugging
+
+## Software Requirements
+
+- ESP32 Camera library (`esp_camera.h`)
+
+## File Structure
+
+- `CCSDS_header.h`: Defines the CCSDS packet structure, including the primary and secondary headers.
+- `CCSDS_Parser.cpp`: Provides methods to parse and print CCSDS packets.
+- `camera_pins.h`: Contains the camera-specific pin configuration.
+- `main.cpp`: The main ESP32 program that sets up the camera, captures images, and creates CCSDS packets.
+
+## CCSDS Packet Format
+
+A CCSDS packet consists of:
+
+1. **Primary Header**: Includes essential metadata, such as version, packet length, sequence count, and APID.
+2. **Secondary Header** (optional): Currently defined but not yet implemented, it may contain additional metadata.
+3. **Payload**: The actual data or content being transmitted (e.g., an image).
+
+The packet is packed with `#pragma pack(push, 1)` to ensure no padding and proper memory alignment.
+
+### Primary Header Fields:
+- `version`: 3-bit version of the packet.
+- `type`: 1-bit type (telemetry or telecommand).
+- `secondary_header`: 1-bit flag to indicate if a secondary header is included.
+- `apid`: 11-bit Application Process Identifier.
+- `sequence_flags`: 2-bit flags indicating sequence information.
+- `sequence_count`: 14-bit sequence number.
+- `packet_length`: 16-bit length of the data payload.
+
+### Secondary Header (Optional):
+- `timestamp`: 32-bit timestamp (not yet implemented).
+- `data_id`: 16-bit identifier for the data type.
+
+### Payload:
+- Variable-length data, depending on the image size.
+
+## Code Description
+
+### CCSDS Header Structure
+
+The `CCSDS_header.h` file defines the structure of the CCSDS packet, including the primary header, the optional secondary header, and the data payload.
+
+### Setup Function
+
+In the `setup()` function:
+- Serial communication is initialized at a baud rate of 115200.
+- The camera is configured and initialized using the `esp_camera_init()` function.
+- If the camera initialization fails, an error is printed via serial.
+
+### Image Capture and Packet Creation
+
+- The `loop()` function captures images every 5 seconds using the camera.
+- The captured image is wrapped in a CCSDS packet using the `createImagePacket()` function.
+- The packet is serialized and transmitted via serial using a custom start word (`0xAA 0xBB 0xCC`).
+- The packet includes the primary header, and the image is embedded in the payload.
+
+### CCSDS Parser
+
+The `CCSDS_Parser` class is responsible for parsing the CCSDS packet:
+- The `parseCCSDS()` method extracts the primary header and payload from a raw byte buffer.
+- The `printCCSDS()` method prints the packet's details (primary header and payload) in a human-readable format for debugging.
+
+## Usage
+
+1. **Install dependencies**:
+   - Install the `esp_camera` library for ESP32.
+   
+2. **Upload the code** to your ESP32 using the Arduino IDE.
+   
+3. **Open the Serial Monitor** to view the captured images in the form of CCSDS packets.
+   
+4. **Monitor Image Packets**:
+   - Each captured image will be wrapped in a CCSDS packet and sent via serial.
+   - The packet details (including primary header and payload) will be printed to the serial monitor.
+
+5. **CCSDS Packet Details**:
+   - The serial monitor will display the packet's version, APID, sequence count, and packet length.
+   - If the payload option is enabled, the image data will be printed in hexadecimal format.
+
+## Why Low-Level Programming Was Important
+
+### Memory Management:
+Low-level programming is crucial in resource-constrained environments like the ESP32. This microcontroller has limited memory, and controlling memory allocation directly is essential for efficient operation. By using **manual memory management** (e.g., `malloc()` and `free()`), this system mimics the resource-conscious programming required for space applications. Space missions like **Voyager 1** face extreme resource constraints, where every byte of memory and every instruction must be optimized to avoid waste and ensure successful data transmission. The low-level approach in this project allows for tight control over memory usage, which is essential when dealing with limited resources, similar to Voyager 1's onboard systems.
+
+### Efficient Data Packing:
+The CCSDS packet format demands precise control over the packing of data, as even small inefficiencies can have significant impacts on data integrity and transmission reliability. Low-level programming allows us to manually pack the headers and payload to ensure there is no unnecessary padding or alignment issues. This is particularly critical for space systems like **Voyager 1**, where every byte of data must be packed efficiently for long-distance transmission.
+
+### Data Transmission:
+Just as Voyager 1 uses **low-level protocols** to send data back to Earth, this project implements low-level serial communication to transmit the CCSDS packets. This ensures efficient, error-free data transmission that mimics the kind of communication used in space missions. Low-level control of serial transmission allows for the manual handling of byte streams, ensuring that data is sent correctly, and critical information, like image data, is preserved without corruption.
+
+## Future Improvements
+
+- Implement the secondary header for additional metadata, such as timestamp or other identifiers.
+- Create a micro-kernel for recieving telecommand data. 
 
 ---
 ## Works Cited
