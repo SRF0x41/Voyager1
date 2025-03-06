@@ -33,6 +33,10 @@
  * ```
  */
 
+#include <iostream>
+#include <cstring>
+#include <Arduino.h>
+#include "CCSDS_header.h"
 class CCSDS_Parser
 {
 public:
